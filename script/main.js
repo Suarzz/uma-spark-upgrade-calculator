@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function calcTotalChance(p1, gp1, gp2, p2, gp3, gp4) {
-        const eventChance = (1 - p1) * (1 - p2) * (1 - gp1) * (1 - gp2) * (1 - gp3) * (1 - gp4 );
+        const eventChance = (1 - p1) * (1 - p2) * (1 - gp1) * (1 - gp2) * (1 - gp3) * (1 - gp4);
         return 1 - eventChance * eventChance;
     }
 
@@ -102,6 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
             updateAllChances();
         });
     });
-    
+
     updateAllChances();
 });
