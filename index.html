@@ -10,68 +10,32 @@
 <h1 class="title">Spark Upgrade Calculator</h1>
 
 <h3 class="intro">This calculator is used to know the chance
-    of a particular pink factor activating on both legacy events on your run.
-    The factor used is "Turf" but applies for every pink factor (track/distance/style).</h3>
-
-<h4 class="howto">How to use? If you want to know the chance of your trainee activating the "medium"
-    spark on a run (and hence upgrading their aptitude to S) select the number of stars of your legacies,
-    on their respective slots. <br> If for example your legacy 1 parent has a different pink factor than the one
-    you want to calculate (medium in this case) select the option "no spark".</h4>
+    of a particular pink factor activating <strong>on both legacy events on your run. </strong> <br> <br>
+    For simpliciy reasons, only pictures of the "Turf" factor have been used,
+    but you can select the factor you want with the dropdown menu, the picture just dictates the number of stars</h3>
 
 <div class="calculator-container">
     <!-- Legacy 1 -->
     <div class="legacy-section">
         <h2>Legacy 1</h2>
 
+        <!-- Parent 1 -->
         <div class="image-picker-group">
             <label>Parent 1:</label>
+            <select class="spark-type" data-slot="legacy1-parent">
+                <option value="turf">Turf</option>
+                <option value="dirt">Dirt</option>
+                <option value="short">Short</option>
+                <option value="mile">Mile</option>
+                <option value="medium">Medium</option>
+                <option value="long">Long</option>
+                <option value="front">Front</option>
+                <option value="pace">Pace</option>
+                <option value="late">Late</option>
+                <option value="end">End</option>
+            </select>
             <div class="image-picker" data-group="legacy1-parent">
-                <img src="assets/parent1.png" alt="Selected Image" class="selected-image">
-                <div class="image-options">
-                    <img src="assets/parent1.png" data-stars="0" class="option-img">
-                    <img src="assets/parent2.png" data-stars="1" class="option-img">
-                    <img src="assets/parent3.png" data-stars="2" class="option-img">
-                    <img src="assets/parent4.png" data-stars="3" class="option-img">
-                </div>
-            </div>
-        </div>
-
-        <div class="image-picker-group-grandparent">
-           <div class="randomada">
-               <label>Grandparent 1:</label>
-               <div class="image-picker" data-group="legacy1-grandparent1">
-                   <img src="assets/parent1.png" alt="Selected Image" class="selected-image">
-                   <div class="image-options">
-                       <img src="assets/parent1.png" data-stars="0" class="option-img">
-                       <img src="assets/parent2.png" data-stars="1" class="option-img">
-                       <img src="assets/parent3.png" data-stars="2" class="option-img">
-                       <img src="assets/parent4.png" data-stars="3" class="option-img">
-                   </div>
-               </div>
-           </div>
-            <div class="randomada">
-                <label>Grandparent 2:</label>
-                <div class="image-picker" data-group="legacy1-grandparent2">
-                    <img src="assets/parent1.png" alt="Selected Image" class="selected-image">
-                    <div class="image-options">
-                        <img src="assets/parent1.png" data-stars="0" class="option-img">
-                        <img src="assets/parent2.png" data-stars="1" class="option-img">
-                        <img src="assets/parent3.png" data-stars="2" class="option-img">
-                        <img src="assets/parent4.png" data-stars="3" class="option-img">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Legacy 2 -->
-    <div class="legacy-section">
-        <h2>Legacy 2</h2>
-
-        <div class="image-picker-group">
-            <label>Parent 2:</label>
-            <div class="image-picker" data-group="legacy2-parent">
-                <img src="assets/parent1.png" alt="Selected Image" class="selected-image">
+                <img src="assets/parent1.png" alt="Selected Image" class="selected-image" data-stars="0" data-spark-type="none">
                 <div class="image-options">
                     <img src="assets/parent1.png" data-stars="0" class="option-img">
                     <img src="assets/parent2.png" data-stars="1" class="option-img">
@@ -84,8 +48,20 @@
         <div class="image-picker-group-grandparent">
             <div class="randomada">
                 <label>Grandparent 1:</label>
-                <div class="image-picker" data-group="legacy2-grandparent1">
-                    <img src="assets/parent1.png" alt="Selected Image" class="selected-image">
+                <select class="spark-type" data-slot="legacy1-grandparent1">
+                    <option value="turf">Turf</option>
+                    <option value="dirt">Dirt</option>
+                    <option value="short">Short</option>
+                    <option value="mile">Mile</option>
+                    <option value="medium">Medium</option>
+                    <option value="long">Long</option>
+                    <option value="front">Front</option>
+                    <option value="pace">Pace</option>
+                    <option value="late">Late</option>
+                    <option value="end">End</option>
+                </select>
+                <div class="image-picker" data-group="legacy1-grandparent1">
+                    <img src="assets/parent1.png" alt="Selected Image" class="selected-image" data-stars="0" data-spark-type="none">
                     <div class="image-options">
                         <img src="assets/parent1.png" data-stars="0" class="option-img">
                         <img src="assets/parent2.png" data-stars="1" class="option-img">
@@ -96,8 +72,101 @@
             </div>
             <div class="randomada">
                 <label>Grandparent 2:</label>
+                    <select class="spark-type" data-slot="legacy1-grandparent2">
+                        <option value="turf">Turf</option>
+                        <option value="dirt">Dirt</option>
+                        <option value="short">Short</option>
+                        <option value="mile">Mile</option>
+                        <option value="medium">Medium</option>
+                        <option value="long">Long</option>
+                        <option value="front">Front</option>
+                        <option value="pace">Pace</option>
+                        <option value="late">Late</option>
+                        <option value="end">End</option>
+                    </select>
+                <div class="image-picker" data-group="legacy1-grandparent2">
+                    <img src="assets/parent1.png" alt="Selected Image" class="selected-image" data-stars="0" data-spark-type="none">
+                    <div class="image-options">
+                        <img src="assets/parent1.png" data-stars="0" class="option-img">
+                        <img src="assets/parent2.png" data-stars="1" class="option-img">
+                        <img src="assets/parent3.png" data-stars="2" class="option-img">
+                        <img src="assets/parent4.png" data-stars="3" class="option-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="legacy-section">
+        <!-- Legacy 2 -->
+        <h2>Legacy 2</h2>
+
+        <!-- Parent 1 -->
+        <div class="image-picker-group">
+            <label>Parent 1:</label>
+            <select class="spark-type" data-slot="legacy2-parent">
+                <option value="turf">Turf</option>
+                <option value="dirt">Dirt</option>
+                <option value="short">Short</option>
+                <option value="mile">Mile</option>
+                <option value="medium">Medium</option>
+                <option value="long">Long</option>
+                <option value="front">Front</option>
+                <option value="pace">Pace</option>
+                <option value="late">Late</option>
+                <option value="end">End</option>
+            </select>
+            <div class="image-picker" data-group="legacy2-parent">
+                <img src="assets/parent1.png" alt="Selected Image" class="selected-image" data-stars="0" data-spark-type="none">
+                <div class="image-options">
+                    <img src="assets/parent1.png" data-stars="0" class="option-img">
+                    <img src="assets/parent2.png" data-stars="1" class="option-img">
+                    <img src="assets/parent3.png" data-stars="2" class="option-img">
+                    <img src="assets/parent4.png" data-stars="3" class="option-img">
+                </div>
+            </div>
+        </div>
+
+        <div class="image-picker-group-grandparent">
+            <div class="randomada">
+                <label>Grandparent 1:</label>
+                <select class="spark-type" data-slot="legacy2-grandparent1">
+                    <option value="turf">Turf</option>
+                    <option value="dirt">Dirt</option>
+                    <option value="short">Short</option>
+                    <option value="mile">Mile</option>
+                    <option value="medium">Medium</option>
+                    <option value="long">Long</option>
+                    <option value="front">Front</option>
+                    <option value="pace">Pace</option>
+                    <option value="late">Late</option>
+                    <option value="end">End</option>
+                </select>
+                <div class="image-picker" data-group="legacy2-grandparent1">
+                    <img src="assets/parent1.png" alt="Selected Image" class="selected-image" data-stars="0" data-spark-type="none">
+                    <div class="image-options">
+                        <img src="assets/parent1.png" data-stars="0" class="option-img">
+                        <img src="assets/parent2.png" data-stars="1" class="option-img">
+                        <img src="assets/parent3.png" data-stars="2" class="option-img">
+                        <img src="assets/parent4.png" data-stars="3" class="option-img">
+                    </div>
+                </div>
+            </div>
+            <div class="randomada">
+                <label>Grandparent 2:</label>
+                <select class="spark-type" data-slot="legacy2-grandparent2">
+                    <option value="turf">Turf</option>
+                    <option value="dirt">Dirt</option>
+                    <option value="short">Short</option>
+                    <option value="mile">Mile</option>
+                    <option value="medium">Medium</option>
+                    <option value="long">Long</option>
+                    <option value="front">Front</option>
+                    <option value="pace">Pace</option>
+                    <option value="late">Late</option>
+                    <option value="end">End</option>
+                </select>
                 <div class="image-picker" data-group="legacy2-grandparent2">
-                    <img src="assets/parent1.png" alt="Selected Image" class="selected-image">
+                    <img src="assets/parent1.png" alt="Selected Image" class="selected-image" data-stars="0" data-spark-type="none">
                     <div class="image-options">
                         <img src="assets/parent1.png" data-stars="0" class="option-img">
                         <img src="assets/parent2.png" data-stars="1" class="option-img">
@@ -110,7 +179,16 @@
     </div>
 </div>
 
-<div id="result" class="result-display"></div>
+
+<table id="results-table" class="result-display" style="margin-top:20px; width:300px; margin-left:auto; margin-right:auto; border-collapse: collapse;">
+    <thead>
+    <tr>
+        <th style="border-bottom:1px solid #ccc;">Spark Type</th>
+        <th style="border-bottom:1px solid #ccc;">Chance</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
 
 

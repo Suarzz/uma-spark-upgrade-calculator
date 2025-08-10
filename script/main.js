@@ -1,6 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Map stars to percentage
+    const slotGroups = [
+        "legacy1-parent",
+        "legacy1-grandparent1",
+        "legacy1-grandparent2",
+        "legacy2-parent",
+        "legacy2-grandparent1",
+        "legacy2-grandparent2"
+    ];
+
+    const sparkTypes = ["turf","dirt","short","mile","medium","long","front","pace","late","end"];
+
     function starsToChance(stars) {
         switch (stars) {
             case 0: return 0.0;
@@ -11,32 +21,42 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Total probability formula
     function calcTotalChance(p1, gp1, gp2, p2, gp3, gp4) {
         const eventChance = (1 - p1) * (1 - p2) * (1 - gp1 / 2) * (1 - gp2 / 2) * (1 - gp3 / 2) * (1 - gp4 / 2);
         return 1 - eventChance * eventChance;
     }
 
-    // Function to update the displayed chance
-    function updateChance() {
-        const selectors = [
-            '[data-group="legacy1-parent"] .selected-image',
-            '[data-group="legacy1-grandparent1"] .selected-image',
-            '[data-group="legacy1-grandparent2"] .selected-image',
-            '[data-group="legacy2-parent"] .selected-image',
-            '[data-group="legacy2-grandparent1"] .selected-image',
-            '[data-group="legacy2-grandparent2"] .selected-image'
-        ];
+    function updateAllChances() {
+        const tbody = document.querySelector("#results-table tbody");
+        if (!tbody) return;
+        tbody.innerHTML = "";
 
-        const stars = selectors.map(sel => parseInt(document.querySelector(sel).dataset.stars || "0", 10));
-        const chances = stars.map(starsToChance);
+        sparkTypes.forEach(type => {
+            const chances = slotGroups.map(group => {
+                const img = document.querySelector(`[data-group="${group}"] .selected-image`);
+                if (!img) return 0;
+                const stars = parseInt(img.dataset.stars || "0", 10);
 
-        const totalChance = calcTotalChance(...chances);
+                const select = document.querySelector(`.spark-type[data-slot="${group}"]`);
+                const slotType = select ? select.value : (img.dataset.sparkType || "none");
 
-        document.getElementById("result").textContent = `Chance: ${(totalChance * 100).toFixed(2)}%`;
+                return (slotType === type) ? starsToChance(stars) : 0;
+            });
+
+            const total = calcTotalChance(...chances);
+
+            if (total > 0.0001) {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                <td style="text-transform:capitalize; border-bottom:1px solid #eee;">${type}</td>
+                <td style="border-bottom:1px solid #eee;">${(total * 100).toFixed(2)}%</td>
+            `;
+                tbody.appendChild(row);
+            }
+        });
     }
 
-    // Handle image selection
+
     document.querySelectorAll(".image-picker").forEach(picker => {
         const selectedImg = picker.querySelector(".selected-image");
         const options = picker.querySelectorAll(".option-img");
@@ -44,10 +64,16 @@ document.addEventListener("DOMContentLoaded", () => {
         options.forEach(option => {
             option.addEventListener("click", (e) => {
                 e.stopPropagation();
+
                 selectedImg.src = option.src;
-                selectedImg.dataset.stars = option.dataset.stars; // Store star count
+                selectedImg.dataset.stars = option.dataset.stars;
+
+                const slot = picker.dataset.group;
+                const select = document.querySelector(`.spark-type[data-slot="${slot}"]`);
+                if (select) selectedImg.dataset.sparkType = select.value;
+
                 picker.classList.remove("open");
-                updateChance(); // Update instantly when an image is picked
+                updateAllChances();
             });
         });
 
@@ -57,12 +83,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Close dropdown when clicking outside
     window.addEventListener("click", () => {
-        document.querySelectorAll(".image-picker").forEach(picker => picker.classList.remove("open"));
+        document.querySelectorAll(".image-picker").forEach(p => p.classList.remove("open"));
     });
 
-    // Default display
-    document.getElementById("result").textContent = "Chance: 0.00%";
+    document.querySelectorAll(".spark-type").forEach(select => {
 
+        const slot = select.dataset.slot;
+        const img = document.querySelector(`[data-group="${slot}"] .selected-image`);
+        if (img) {
+            img.dataset.sparkType = select.value;
+        }
+
+        select.addEventListener("change", () => {
+            const slot = select.dataset.slot;
+            const img = document.querySelector(`[data-group="${slot}"] .selected-image`);
+            if (img) img.dataset.sparkType = select.value;
+            updateAllChances();
+        });
+    });
+    
+    updateAllChances();
 });
