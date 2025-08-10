@@ -14,15 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function starsToChance(stars) {
         switch (stars) {
             case 0: return 0.0;
-            case 1: return 0.07;
-            case 2: return 0.11;
-            case 3: return 0.15;
+            case 1: return 0.01;
+            case 2: return 0.03;
+            case 3: return 0.05;
             default: return 0.0;
         }
     }
 
     function calcTotalChance(p1, gp1, gp2, p2, gp3, gp4) {
-        const eventChance = (1 - p1) * (1 - p2) * (1 - gp1 / 2) * (1 - gp2 / 2) * (1 - gp3 / 2) * (1 - gp4 / 2);
+        const eventChance = (1 - p1) * (1 - p2) * (1 - gp1) * (1 - gp2) * (1 - gp3) * (1 - gp4 );
         return 1 - eventChance * eventChance;
     }
 
