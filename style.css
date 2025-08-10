@@ -1,17 +1,16 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #fff5b0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #fff8c2, #ffe559);
     margin: 0;
     padding: 20px;
     text-align: center;
     color: #333;
 }
-
 .title {
-    margin-bottom: 30px;
-    font-size: 2rem;
-    color: #333;
+    color: #d35400;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
+
 
 .intro,
 .howto {
@@ -80,6 +79,13 @@ body {
     object-fit: cover;
     border: 2px solid #ccc;
     border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: border-color 0.2s, transform 0.15s ease;
+}
+
+.selected-image:hover {
+    border-color: #d35400;
+    transform: scale(1.01);
 }
 
 .image-options {
@@ -95,6 +101,11 @@ body {
     padding: 5px;
     gap: 5px;
     flex-wrap: nowrap;
+}
+
+.option-img:hover {
+    border-color: #d35400;
+    transform: scale(1.02);
 }
 
 .image-picker.open .image-options {
@@ -114,32 +125,36 @@ body {
     border-color: #28a745;
 }
 
-.button-wrapper {
-    margin-top: 30px;
+#results-table {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
-
-#calculate-button {
-    background: #28a745;
+#results-table th {
+    background: #309e2e;
     color: white;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border: none;
+    padding: 8px;
+}
+#results-table td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+
+select.spark-type {
+    padding: 6px 10px;
     border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: border-color 0.2s;
+}
+select.spark-type:hover {
+    border-color: #d35400;
 }
 
-#calculate-button:hover {
-    background: #218838;
-}
-
-.result-display {
-    margin-top: 15px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #2a7;
-    text-align: center;
-}
 
 /* Responsive adjustments */
 @media (max-width: 700px) {
